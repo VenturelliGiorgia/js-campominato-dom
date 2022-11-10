@@ -1,0 +1,18 @@
+.grid-container {
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.cella {
+    border: 1px solid black;
+    padding: 2rem;
+    aspect-ratio: 1/1;
+}
+
+.my-bg-body {
+    background-color: rgb(90, 190, 172);
+}
+
+.bg-tiffany {
+    background-color: rgb(7, 255, 210);
+}
