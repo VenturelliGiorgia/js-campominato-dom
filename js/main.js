@@ -1,13 +1,14 @@
 const btnGenera = document.getElementById("btn-genera");
 const gridContainer = document.querySelector(".grid-container");
-let bombs;
-
+let bombe;
+let cont = 0;
+let contBombe = 0;
 
 btnGenera.addEventListener("click", function () {
     griglia();
-    bombs = generaBombe();
+    bombe = generaBombe();
 
-    console.log(bombs);
+    console.log(bombe);
 
 });
 
@@ -26,12 +27,20 @@ function griglia() {
             // this.classList.add("bg-tiffany");
             const cella = +this.dataset.numCella;
 
-            if (bombs.includes(cella)) { //se il numero presente nell'array bombe è uguale al numero assegnato alla cella, hai trovato una bomba
-                let bombeEsplose = alert("Hai perso, hai trovato una bomba...");
-                console.log(bombeEsplose);
+            if (bombe.includes(cella)) { //se il numero presente nell'array bombe è uguale al numero assegnato alla cella, hai trovato una bomba
+                alert("Hai perso, hai trovato una bomba...");
                 this.classList.add("bg-danger");
+                contBombe++;
+                if (contBombe === 1) {
+
+                }
             } else { //se no colora di azzurro le altre celle
                 this.classList.add("bg-tiffany");
+                cont++;
+                console.log("stampa " + cont);
+                if (cont === 84) {
+                    alert("Hai vinto, hai cliccato ben " + cont + " volte!!");
+                }
             }
         });
 
@@ -46,16 +55,16 @@ function numeriRandom() {
 
 function generaBombe() {
     //creiamo un array che conterrà le 16 bombe
-    const bombe = [];
+    const listaBombe = [];
 
-    while (bombe.length < 16) {
+    while (listaBombe.length < 16) {
         const num = numeriRandom();
 
-        if (!bombe.includes(num)) {
-            bombe.push(num);
+        if (!listaBombe.includes(num)) {
+            listaBombe.push(num);
         }
 
     }
-    console.log(bombe);
-    return bombe;
+    console.log(listaBombe);
+    return listaBombe;
 }
