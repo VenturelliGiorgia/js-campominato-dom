@@ -1,9 +1,14 @@
 const btnGenera = document.getElementById("btn-genera");
 const gridContainer = document.querySelector(".grid-container");
+let bombs;
+
 
 btnGenera.addEventListener("click", function () {
     griglia();
-    generaBombe();
+    bombs = generaBombe();
+
+    console.log(bombs);
+
 });
 
 function griglia() {
@@ -18,8 +23,16 @@ function griglia() {
         cella.dataset.numCella = i;
         gridContainer.append(cella); //aggiungo l'elemento all'html
         cella.addEventListener("click", function () {
+            // this.classList.add("bg-tiffany");
+            const cella = +this.dataset.numCella;
 
-            this.classList.add("bg-tiffany");
+            if (bombs.includes(cella)) { //se il numero presente nell'array bombe è uguale al numero assegnato alla cella, hai trovato una bomba
+                let bombeEsplose = alert("Hai perso, hai trovato una bomba...");
+                console.log(bombeEsplose);
+                this.classList.add("bg-danger");
+            } else { //se no colora di azzurro le altre celle
+                this.classList.add("bg-tiffany");
+            }
         });
 
     }
@@ -44,5 +57,5 @@ function generaBombe() {
 
     }
     console.log(bombe);
-
+    return bombe;
 }
